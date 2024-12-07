@@ -1,4 +1,9 @@
 #!/bin/bash
+colornow=$(cat /etc/rmbl/theme/color.conf)
+colorfont=$(cat /etc/rmbl/warnafont/warnaf.conf)
+export COLOR1="$(cat /etc/rmbl/theme/$colornow | grep -w "TEXT" | cut -d: -f2|sed 's/ //g')"
+export COLBG1="$(cat /etc/rmbl/theme/$colornow | grep -w "BG" | cut -d: -f2|sed 's/ //g')"
+export WH="$(cat /etc/rmbl/warnafont/$colorfont | grep -w "WARNAF" | cut -d: -f2|sed 's/ //g')"
 
 CONFIG_FILE="/usr/local/etc/xray/config/06_routing.json"
 
@@ -62,9 +67,9 @@ function_3rd() {
 # Fungsi untuk menampilkan menu
 show_wg_menu() {
     clear
-    echo -e "——————————————————————————"
-    echo -e "-- [ Route Xray Menu ] --"
-    echo -e "——————————————————————————"
+    echo -e "${COLOR1}——————————————————————————"
+    echo -e "${COLBG1}-- [ Route Xray Menu ] --"
+    echo -e "${COLOR1}——————————————————————————"
     echo -e ""
     echo -e " [1] Route all traffic via WARP"
     echo -e " [2] Route some website traffic via WARP"
@@ -72,7 +77,7 @@ show_wg_menu() {
     echo -e ""
     echo -e " [0] Back To Menu"
     echo -e ""
-    echo -e "——————————————————————————"
+    echo -e "${COLOR1}——————————————————————————"
     echo -e ""
 }
 
