@@ -1,4 +1,9 @@
 #!/bin/bash
+colornow=$(cat /etc/rmbl/theme/color.conf)
+colorfont=$(cat /etc/rmbl/warnafont/warnaf.conf)
+export COLOR1="$(cat /etc/rmbl/theme/$colornow | grep -w "TEXT" | cut -d: -f2|sed 's/ //g')"
+export COLBG1="$(cat /etc/rmbl/theme/$colornow | grep -w "BG" | cut -d: -f2|sed 's/ //g')"
+export WH="$(cat /etc/rmbl/warnafont/$colorfont | grep -w "WARNAF" | cut -d: -f2|sed 's/ //g')"
 
 info() {
     echo -e "[ INFO ] $1"
@@ -14,11 +19,11 @@ warning() {
 # Fungsi untuk menampilkan menu jika tidak ada klien
 no_clients_menu() {
     clear
-    echo -e "————————————————————————"
-    echo -e "       User List        "
-    echo -e "————————————————————————"
-    echo -e "You have no existing clients!"
-    echo -e "————————————————————————"
+    echo -e "${COLOR1}————————————————————————"
+    echo -e "${COLBG1}       User List        "
+    echo -e "${COLOR1}————————————————————————"
+    echo -e "${COLBG1}You have no existing clients!"
+    echo -e "${COLOR1}————————————————————————"
     echo ""
     read -n 1 -s -r -p "Press any key to back"
     menu
@@ -31,15 +36,15 @@ if [[ ${NUMBER_OF_CLIENTS} == '0' ]]; then
 fi
 
 clear
-echo -e "————————————————————————"
-echo -e "       User List        "
-echo -e "————————————————————————"
-echo -e "       User EXP        "
-echo -e "————————————————————————"
+echo -e "${COLOR1}————————————————————————"
+echo -e "${COLBG1}       User List        "
+echo -e "${COLOR1}————————————————————————"
+echo -e "${COLBG1}       User EXP        "
+echo -e "${COLOR1}————————————————————————"
 grep -E "^#&@ " "/usr/local/etc/xray/config/04_inbounds.json" | cut -d ' ' -f 2-3 | column -t | sort | uniq
 echo ""
-echo -e "Tap enter to go back"
-echo -e "————————————————————————"
+echo -e "${COLBG1}Tap enter to go back"
+echo -e "${COLOR1}————————————————————————"
 read -rp "Input Username: " user
 if [[ -z $user ]]; then
     menu
