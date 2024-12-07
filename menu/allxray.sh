@@ -8,7 +8,7 @@ export WH="$(cat /etc/rmbl/warnafont/$colorfont | grep -w "WARNAF" | cut -d: -f2
 show_allxray_menu() {
     clear
     echo -e "${COLOR1}————————————————————————————"
-    echo -e "${COLOR1}----${WH}[${COLBG1}All Xray Menu${WH}]${COLOR1}----"
+    echo -e "${COLBG1} ---- [ All Xray Menu ] ----"
     echo -e "${COLOR1}————————————————————————————"
     echo -e "${WH}[${COLOR1}1${WH}] Create Xray"
     echo -e "${WH}[${COLOR1}2${WH}] Extend Xray"
