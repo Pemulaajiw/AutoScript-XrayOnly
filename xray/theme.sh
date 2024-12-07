@@ -42,7 +42,7 @@ echo -e ""
 }
 
 function Select_Menu() {
-read -p "Select From Options [1-19 or x] :  " Ltt
+read -p "Select From Options [1-17 or 00] :  " Ltt
 case $Ltt in
 01 | 1)
 clear
