@@ -1,5 +1,23 @@
 #!/bin/bash
+colornow=$(cat /etc/rmbl/theme/color.conf)
+colorfont=$(cat /etc/rmbl/warnafont/warnaf.conf)
+export COLOR1="$(cat /etc/rmbl/theme/$colornow | grep -w "TEXT" | cut -d: -f2|sed 's/ //g')"
+export COLBG1="$(cat /etc/rmbl/theme/$colornow | grep -w "BG" | cut -d: -f2|sed 's/ //g')"
+export WH="$(cat /etc/rmbl/warnafont/$colorfont | grep -w "WARNAF" | cut -d: -f2|sed 's/ //g')"
 
+# . Liner 
+function baris_panjang() {
+  echo -e "\033[5;36m ◇━━━━━━━━━━━━━━━━━◇\033[0m"
+}
+
+function Sc_Credit(){
+sleep 1
+baris_panjang
+echo -e "\e[92;1m      Terimakasih Telah Menggunakan \033[0m"
+echo -e "\e[92;1m            Script 𝗙𝗔𝗡𝗡𝗧𝗨𝗡𝗘𝗟 \033[0m"
+baris_panjang
+exit 1
+}
 
 # Fungsi untuk menghasilkan string acak
 generate_random_string() {
@@ -431,66 +449,66 @@ systemctl restart xray
 clear
 
 # Menampilkan Informasi ke Pengguna
-echo -e "————————————————————————" | tee -a /user/xray-$user.log
-echo -e "----- [ All Xray ] -----              " | tee -a /user/xray-$user.log
-echo -e "————————————————————————" | tee -a /user/xray-$user.log
-echo -e "ISP            : $ISP" | tee -a /user/xray-$user.log
-echo -e "Region         : $REG" | tee -a /user/xray-$user.log
-echo -e "City           : $CITY" | tee -a /user/xray-$user.log
-echo -e "Port TLS/HTTPS : 443" | tee -a /user/xray-$user.log
-echo -e "Port HTTP      : 80" | tee -a /user/xray-$user.log
-echo -e "Transport      : XTLS-Vision, TCP TLS, Websocket, HTTPupgrade, gRPC" | tee -a /user/xray-$user.log
-echo -e "Expired On     : $exp" | tee -a /user/xray-$user.log
-echo -e "Link / Web     : https://$domain/xray/xray-$user.html" | tee -a /user/xray-$user.log
-echo -e "————————————————————————" | tee -a /user/xray-$user.log
-echo -e "----- [ Vmess Link ] -----             " | tee -a /user/xray-$user.log
-echo -e "————————————————————————" | tee -a /user/xray-$user.log
-echo -e "Link WS TLS    : $vmesslink1" | tee -a /user/xray-$user.log
-echo -e "————————————————————————" | tee -a /user/xray-$user.log
-echo -e "Link WS nTLS   : $vmesslink2" | tee -a /user/xray-$user.log
-echo -e "————————————————————————" | tee -a /user/xray-$user.log
-echo -e "Link HUP TLS   : $vmesslink3" | tee -a /user/xray-$user.log
-echo -e "————————————————————————" | tee -a /user/xray-$user.log
-echo -e "Link HUP nTLS  : $vmesslink4" | tee -a /user/xray-$user.log
-echo -e "————————————————————————" | tee -a /user/xray-$user.log
-echo -e "Link gRPC      : $vmesslink5" | tee -a /user/xray-$user.log
-echo -e "————————————————————————" | tee -a /user/xray-$user.log
-echo -e " " | tee -a /user/xray-$user.log
-echo -e " " | tee -a /user/xray-$user.log
-echo -e "————————————————————————" | tee -a /user/xray-$user.log
-echo -e "----- [ Vless Link ] -----             " | tee -a /user/xray-$user.log
-echo -e "————————————————————————" | tee -a /user/xray-$user.log
-echo -e "Link WS TLS    : $vlesslink1" | tee -a /user/xray-$user.log
-echo -e "————————————————————————" | tee -a /user/xray-$user.log
-echo -e "Link WS nTLS   : $vlesslink2" | tee -a /user/xray-$user.log
-echo -e "————————————————————————" | tee -a /user/xray-$user.log
-echo -e "Link HUP TLS   : $vlesslink3" | tee -a /user/xray-$user.log
-echo -e "————————————————————————" | tee -a /user/xray-$user.log
-echo -e "Link HUP nTLS  : $vlesslink4" | tee -a /user/xray-$user.log
-echo -e "————————————————————————" | tee -a /user/xray-$user.log
-echo -e "Link gRPC      : $vlesslink5" | tee -a /user/xray-$user.log
-echo -e "————————————————————————" | tee -a /user/xray-$user.log
-echo -e "Link XTLS-Vision : $vlesslink6" | tee -a /user/xray-$user.log
-echo -e "————————————————————————" | tee -a /user/xray-$user.log
-echo -e " " | tee -a /user/xray-$user.log
-echo -e " " | tee -a /user/xray-$user.log
-echo -e "————————————————————————" | tee -a /user/xray-$user.log
-echo -e "----- [ Trojan Link ] -----             " | tee -a /user/xray-$user.log
-echo -e "————————————————————————" | tee -a /user/xray-$user.log
-echo -e "Link WS TLS    : $trojanlink1" | tee -a /user/xray-$user.log
-echo -e "————————————————————————" | tee -a /user/xray-$user.log
-echo -e "Link WS nTLS   : $trojanlink2" | tee -a /user/xray-$user.log
-echo -e "————————————————————————" | tee -a /user/xray-$user.log
-echo -e "Link HUP TLS   : $trojanlink3" | tee -a /user/xray-$user.log
-echo -e "————————————————————————" | tee -a /user/xray-$user.log
-echo -e "Link HUP nTLS  : $trojanlink4" | tee -a /user/xray-$user.log
-echo -e "————————————————————————" | tee -a /user/xray-$user.log
-echo -e "Link gRPC      : $trojanlink5" | tee -a /user/xray-$user.log
-echo -e "————————————————————————" | tee -a /user/xray-$user.log
-echo -e "Link TCP TLS   : $trojanlink6" | tee -a /user/xray-$user.log
-echo -e "————————————————————————" | tee -a /user/xray-$user.log
-echo -e " " | tee -a /user/xray-$user.log
-echo -e " " | tee -a /user/xray-$user.log
+echo -e "${COLOR1}————————————————————————" | tee -a /user/xray-$user.log
+echo -e "${COLBG1}----- [ All Xray ] -----              " | tee -a /user/xray-$user.log
+echo -e "${COLOR1}————————————————————————" | tee -a /user/xray-$user.log
+echo -e "${COLOR1}ISP            : ${WH}$ISP" | tee -a /user/xray-$user.log
+echo -e "${COLOR1}Region         : ${WH}$REG" | tee -a /user/xray-$user.log
+echo -e "${COLOR1}City           : ${WH}$CITY" | tee -a /user/xray-$user.log
+echo -e "${COLOR1}Port TLS/HTTPS : ${WH}443" | tee -a /user/xray-$user.log
+echo -e "${COLOR1}Port HTTP      : ${WH}80" | tee -a /user/xray-$user.log
+echo -e "${COLOR1}Transport      : ${WH}XTLS-Vision, TCP TLS, Websocket, HTTPupgrade, gRPC" | tee -a /user/xray-$user.log
+echo -e "${COLOR1}Expired On     : ${WH}$exp" | tee -a /user/xray-$user.log
+echo -e "${COLOR1}Link / Web     : ${WH}https://$domain/xray/xray-$user.html" | tee -a /user/xray-$user.log
+echo -e "${COLOR1}————————————————————————" | tee -a /user/xray-$user.log
+echo -e "${COLBG1}----- [ Vmess Link ] -----             " | tee -a /user/xray-$user.log
+echo -e "${COLOR1}————————————————————————" | tee -a /user/xray-$user.log
+echo -e "${COLBG1}Link WS TLS    : ${WH}$vmesslink1" | tee -a /user/xray-$user.log
+echo -e "${COLOR1}————————————————————————" | tee -a /user/xray-$user.log
+echo -e "${COLBG1}Link WS nTLS   : ${WH}$vmesslink2" | tee -a /user/xray-$user.log
+echo -e "${COLOR1}————————————————————————" | tee -a /user/xray-$user.log
+echo -e "${COLBG1}Link HUP TLS   : ${WH}$vmesslink3" | tee -a /user/xray-$user.log
+echo -e "${COLOR1}————————————————————————" | tee -a /user/xray-$user.log
+echo -e "${COLBG1}Link HUP nTLS  : ${WH}$vmesslink4" | tee -a /user/xray-$user.log
+echo -e "${COLOR1}————————————————————————" | tee -a /user/xray-$user.log
+echo -e "${COLBG1}Link gRPC      : ${WH}$vmesslink5" | tee -a /user/xray-$user.log
+echo -e "${COLOR1}————————————————————————" | tee -a /user/xray-$user.log
+echo -e "${COLOR1} " | tee -a /user/xray-$user.log
+echo -e "${COLOR1} " | tee -a /user/xray-$user.log
+echo -e "${COLOR1}————————————————————————" | tee -a /user/xray-$user.log
+echo -e "${COLBG1}----- [ Vless Link ] -----             " | tee -a /user/xray-$user.log
+echo -e "${COLOR1}————————————————————————" | tee -a /user/xray-$user.log
+echo -e "${COLBG1}Link WS TLS    : ${WH}$vlesslink1" | tee -a /user/xray-$user.log
+echo -e "${COLOR1}————————————————————————" | tee -a /user/xray-$user.log
+echo -e "${COLBG1}Link WS nTLS   : ${WH}$vlesslink2" | tee -a /user/xray-$user.log
+echo -e "${COLOR1}————————————————————————" | tee -a /user/xray-$user.log
+echo -e "${COLBG1}Link HUP TLS   : ${WH}$vlesslink3" | tee -a /user/xray-$user.log
+echo -e "${COLOR1}————————————————————————" | tee -a /user/xray-$user.log
+echo -e "${COLBG1}Link HUP nTLS  : ${WH}$vlesslink4" | tee -a /user/xray-$user.log
+echo -e "${COLOR1}————————————————————————" | tee -a /user/xray-$user.log
+echo -e "${COLBG1}Link gRPC      : ${WH}$vlesslink5" | tee -a /user/xray-$user.log
+echo -e "${COLOR1}————————————————————————" | tee -a /user/xray-$user.log
+echo -e "${COLBG1}Link XTLS-Vision : ${WH}$vlesslink6" | tee -a /user/xray-$user.log
+echo -e "${COLOR1}————————————————————————" | tee -a /user/xray-$user.log
+echo -e "${COLBG1} " | tee -a /user/xray-$user.log
+echo -e "${COLOR1} " | tee -a /user/xray-$user.log
+echo -e "${COLOR1}————————————————————————" | tee -a /user/xray-$user.log
+echo -e "${COLBG1}----- [ Trojan Link ] -----             " | tee -a /user/xray-$user.log
+echo -e "${COLOR1}————————————————————————" | tee -a /user/xray-$user.log
+echo -e "${COLBG1}Link WS TLS    : ${WH}$trojanlink1" | tee -a /user/xray-$user.log
+echo -e "${COLOR1}————————————————————————" | tee -a /user/xray-$user.log
+echo -e "${COLBG1}Link WS nTLS   : ${WH}$trojanlink2" | tee -a /user/xray-$user.log
+echo -e "${COLOR1}————————————————————————" | tee -a /user/xray-$user.log
+echo -e "${COLBG1}Link HUP TLS   : ${WH}$trojanlink3" | tee -a /user/xray-$user.log
+echo -e "${COLOR1}————————————————————————" | tee -a /user/xray-$user.log
+echo -e "${COLBG1}Link HUP nTLS  : ${WH}$trojanlink4" | tee -a /user/xray-$user.log
+echo -e "${COLOR1}————————————————————————" | tee -a /user/xray-$user.log
+echo -e "${COLBG1}Link gRPC      : ${WH}$trojanlink5" | tee -a /user/xray-$user.log
+echo -e "${COLOR1}————————————————————————" | tee -a /user/xray-$user.log
+echo -e "${COLBG1}Link TCP TLS   : ${WH}$trojanlink6" | tee -a /user/xray-$user.log
+echo -e "${COLOR1}————————————————————————" | tee -a /user/xray-$user.log
+echo -e "${COLOR1} " | tee -a /user/xray-$user.log
+echo -e "${COLOR1} " | tee -a /user/xray-$user.log
 
 BOT_TOKEN=$(cat /etc/bot_telegram)
 CHAT_ID=$(cat /etc/user_telegram)
@@ -538,4 +556,4 @@ else
 fi
 read -n 1 -s -r -p "Press any key to go back to menu"
 clear
-allxray
+Sc_Credit
