@@ -71,11 +71,11 @@ show_wg_menu() {
     echo -e "${COLBG1}-- [ Route Xray Menu ] --"
     echo -e "${COLOR1}——————————————————————————"
     echo -e ""
-    echo -e " [1] Route all traffic via WARP"
-    echo -e " [2] Route some website traffic via WARP"
-    echo -e " [3] Disable route WARP"
+    echo -e "${WH}[${COLOR1}1${WH}] Route all traffic via WARP"
+    echo -e "${WH}[${COLOR1}2${WH}] Route some website traffic via WARP"
+    echo -e "${WH}[${COLOR1}3${WH}] Disable route WARP"
     echo -e ""
-    echo -e " [0] Back To Menu"
+    echo -e "${WH}[${COLOR1}0${WH}] Back To Menu"
     echo -e ""
     echo -e "${COLOR1}——————————————————————————"
     echo -e ""
@@ -83,7 +83,7 @@ show_wg_menu() {
 
 # Fungsi untuk menangani input menu
 handle_wg_menu() {
-    read -p "[ root ] t.me/November2k~# "  opt
+    read -p "[ root ] 𝗙𝗔𝗡𝗡𝗧𝗨𝗡𝗘𝗟~# "  opt
     echo -e ""
     case $opt in
         1) function_1st ; sleep 2 ;;
