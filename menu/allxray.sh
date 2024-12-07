@@ -1,20 +1,25 @@
 #!/bin/bash
+colornow=$(cat /etc/rmbl/theme/color.conf)
+colorfont=$(cat /etc/rmbl/warnafont/warnaf.conf)
+export COLOR1="$(cat /etc/rmbl/theme/$colornow | grep -w "TEXT" | cut -d: -f2|sed 's/ //g')"
+export COLBG1="$(cat /etc/rmbl/theme/$colornow | grep -w "BG" | cut -d: -f2|sed 's/ //g')"
+export WH="$(cat /etc/rmbl/warnafont/$colorfont | grep -w "WARNAF" | cut -d: -f2|sed 's/ //g')"
 
 show_allxray_menu() {
     clear
-    echo -e "————————————————————————————"
-    echo -e "---- [ All Xray Menu ] ----"
-    echo -e "————————————————————————————"
-    echo -e " [1] Create Xray"
-    echo -e " [2] Extend Xray"
-    echo -e " [3] Delete Xray"
-    echo -e " [4] User Login"
-    echo -e " [5] User List"
-    echo -e " [6] BOT Notif"
-    echo -e " [7] Warp Setting"
-    echo -e " [8] User Traffic"
-    echo -e " [0] Back To Menu"
-    echo -e "————————————————————————————"
+    echo -e "${COLOR1}————————————————————————————"
+    echo -e "${COLOR1}----${WH}[${COLBG1}All Xray Menu${WH}]${COLOR1}----"
+    echo -e "${COLOR1}————————————————————————————"
+    echo -e "${WH}[${COLOR1}1${WH}] Create Xray"
+    echo -e "${WH}[${COLOR1}2${WH}] Extend Xray"
+    echo -e "${WH}[${COLOR1}3${WH}] Delete Xray"
+    echo -e "${WH}[${COLOR1}4${WH}] User Login"
+    echo -e "${WH}[${COLOR1}5${WH}] User List"
+    echo -e "${WH}[${COLOR1}6${WH}] BOT Notif"
+    echo -e "${WH}[${COLOR1}7${WH}] Warp Setting"
+    echo -e "${WH}[${COLOR1}8${WH}] User Traffic"
+    echo -e "${WH}[${COLOR1}0${WH}] Back To Menu"
+    echo -e "${COLOR1}————————————————————————————"
     echo -e ""
 }
 
