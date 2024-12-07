@@ -1,17 +1,22 @@
 #!/bin/bash
+colornow=$(cat /etc/rmbl/theme/color.conf)
+colorfont=$(cat /etc/rmbl/warnafont/warnaf.conf)
+export COLOR1="$(cat /etc/rmbl/theme/$colornow | grep -w "TEXT" | cut -d: -f2|sed 's/ //g')"
+export COLBG1="$(cat /etc/rmbl/theme/$colornow | grep -w "BG" | cut -d: -f2|sed 's/ //g')"
+export WH="$(cat /etc/rmbl/warnafont/$colorfont | grep -w "WARNAF" | cut -d: -f2|sed 's/ //g')"
 
 function display_header() {
     clear
-    echo -e "————————————————————————"
-    echo -e "All Xray User Login Account           "
-    echo -e "————————————————————————"
+    echo -e "${COLOR1}————————————————————————"
+    echo -e "${COLBG1}All Xray User Login Account           "
+    echo -e "${COLOR1}————————————————————————"
 }
 
 # Fungsi untuk menampilkan menu
 function display_menu() {
-    echo -e "1. Refresh data akun"
-    echo -e "2. Keluar"
-    echo -e "————————————————————————"
+    echo -e "${COLOR1}1.${WH} Refresh data akun"
+    echo -e "${COLOR1}2.${WH} Keluar"
+    echo -e "${COLOR1}————————————————————————"
 }
 
 # Fungsi untuk menampilkan pengguna dan IP yang login
@@ -62,7 +67,7 @@ function display_users() {
             local jum2=$(nl < /tmp/ipxray)
             echo -e "User: $akun"
             echo -e "$jum2"
-            echo -e "————————————————————————"
+            echo -e "${COLOR1}————————————————————————"
         fi
 
         rm -f /tmp/ipxray /tmp/other
