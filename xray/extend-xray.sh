@@ -1,14 +1,14 @@
 #!/bin/bash
+colornow=$(cat /etc/rmbl/theme/color.conf)
+colorfont=$(cat /etc/rmbl/warnafont/warnaf.conf)
+export COLOR1="$(cat /etc/rmbl/theme/$colornow | grep -w "TEXT" | cut -d: -f2|sed 's/ //g')"
+export COLBG1="$(cat /etc/rmbl/theme/$colornow | grep -w "BG" | cut -d: -f2|sed 's/ //g')"
+export WH="$(cat /etc/rmbl/warnafont/$colorfont | grep -w "WARNAF" | cut -d: -f2|sed 's/ //g')"
+ungu="\033[0;35m"
+Xark="\033[0m"
 # . Liner 
 function baris_panjang() {
   echo -e "${BlueCyan} ——————————————————————————————————— ${Xark} "
-}
-
-function Lunatic_Banner() {
-clear
-baris_panjang
-echo -e "${ungu}         $nama      ${Xark} "
-baris_panjang
 }
 
 function Sc_Credit(){
@@ -16,7 +16,6 @@ sleep 1
 baris_panjang
 echo -e "${ungu}  Terimakasih Telah Menggunakan ${Xark}"
 echo -e "${ungu}          Script Credit 𝗙𝗔𝗡𝗡𝗧𝗨𝗡𝗘𝗟 ${Xark}"
-echo -e "${ungu}        $nama ${Xark}"
 baris_panjang
 exit 1
 }
@@ -56,30 +55,35 @@ clear
 clear
 NUMBER_OF_CLIENTS=$(grep -c -E "^#&@ " "/usr/local/etc/xray/config/04_inbounds.json")
 if [[ ${NUMBER_OF_CLIENTS} == '0' ]]; then
-echo -e "————————————————————————"
-echo -e "Extend All Xray Account              "
-echo -e "————————————————————————"
-echo -e "  You have no existing clients!"
-echo -e "————————————————————————"
+echo -e "${COLOR1}————————————————————————"
+echo -e "${COLBG1}Extend All Xray Account              "
+echo -e "${COLOR1}————————————————————————"
+echo -e "${COLBG1}  You have no existing clients!"
+echo -e "${COLOR1}————————————————————————"
 echo ""
 read -n 1 -s -r -p "Press any key to back on menu"
 allxray
 fi
 clear
-echo -e "————————————————————————"
-echo -e "Extend All Xray Account              "
-echo -e "————————————————————————"
-echo -e " User  Expired  "
-echo -e "————————————————————————"
+echo -e "${COLOR1}————————————————————————"
+echo -e "${COLBG1}Extend All Xray Account              "
+echo -e "${COLOR1}————————————————————————"
+echo -e "${COLBG1} User  Expired  "
+echo -e "${COLOR1}————————————————————————"
 grep -E "^#&@ " "/usr/local/etc/xray/config/04_inbounds.json" | cut -d ' ' -f 2-3 | column -t | sort | uniq
 echo ""
-echo -e "tap enter to go back"
-echo -e "————————————————————————"
-read -rp "Input Username : " user
+echo -e "${COLBG1}tap enter to go back"
+echo -e "${COLOR1}————————————————————————"
+read -rp "${COLBG1}Input Username : " user
 if [ -z $user ]; then
 allxray
 else
-read -p "Expired (days): " masaaktif
+read -p "${COLBG1}Expired (days): " masaaktif
+echo ""
+
+Loading_Animasi
+Loading_Succes
+
 exp=$(grep -wE "^#&@ $user" "/usr/local/etc/xray/config/04_inbounds.json" | cut -d ' ' -f 3 | sort | uniq)
 now=$(date +%Y-%m-%d)
 d1=$(date -d "$exp" +%s)
@@ -90,14 +94,16 @@ exp4=`date -d "$exp3 days" +"%Y-%m-%d"`
 sed -i "/#&@ $user/c\#&@ $user $exp4" /usr/local/etc/xray/config/04_inbounds.json
 systemctl restart xray
 clear
-echo -e "————————————————————————"
-echo -e "All Xray Account Success Extended         "
-echo -e "————————————————————————"
-echo -e " Client Name : $user"
-echo -e " Expired On  : $exp4"
-echo -e "————————————————————————"
+echo -e "echo ""
+
+echo -e "${COLOR1}————————————————————————"
+echo -e "${COLBG1}All Xray Account Success Extended         "
+echo -e "${COLOR1}————————————————————————"
+echo -e "${COLBG1} Client Name : ${WH}$user"
+echo -e "${COLBG1} Expired On  : ${WH}$exp4"
+echo -e "${COLOR1}————————————————————————"
 echo ""
 read -n 1 -s -r -p "Press any key to back on menu"
 clear
-allxray
+Sc_Credit
 fi
