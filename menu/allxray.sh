@@ -25,7 +25,7 @@ show_allxray_menu() {
 
 # Fungsi untuk menangani input menu
 handle_allxray_menu() {
-    read -p "[ root ] t.me/November2k~# "  opt
+    read -p "[ root ] 𝗙𝗔𝗡𝗡𝗧𝗨𝗡𝗘𝗟~# "  opt
     echo -e ""
     case $opt in
         1) clear ; create-xray ;;
