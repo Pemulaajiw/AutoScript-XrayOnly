@@ -68,7 +68,7 @@ function_3rd() {
 show_wg_menu() {
     clear
     echo -e "${COLOR1}——————————————————————————"
-    echo -e "${COLBG1}-- [ Route Xray Menu ] --"
+    echo -e "${WH}    -- [ Route Xray Menu ] --"
     echo -e "${COLOR1}——————————————————————————"
     echo -e ""
     echo -e "${WH}[${COLOR1}1${WH}] Route all traffic via WARP"
