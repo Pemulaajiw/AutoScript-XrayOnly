@@ -74,7 +74,7 @@ grep -E "^#&@ " "/usr/local/etc/xray/config/04_inbounds.json" | cut -d ' ' -f 2-
 echo ""
 echo -e "${COLBG1}tap enter to go back"
 echo -e "${COLOR1}————————————————————————"
-read -rp "${COLBG1}Input Username : " user
+read -rp "${WH}Input Username : " user
 if [ -z $user ]; then
 allxray
 else
