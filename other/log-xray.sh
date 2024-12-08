@@ -20,9 +20,9 @@ warning() {
 no_clients_menu() {
     clear
     echo -e "${COLOR1}————————————————————————"
-    echo -e "${COLBG1}       User List        "
+    echo -e "${WH}           User List        "
     echo -e "${COLOR1}————————————————————————"
-    echo -e "${COLBG1}You have no existing clients!"
+    echo -e "${WH}You have no existing clients!"
     echo -e "${COLOR1}————————————————————————"
     echo ""
     read -n 1 -s -r -p "Press any key to back"
@@ -37,13 +37,13 @@ fi
 
 clear
 echo -e "${COLOR1}————————————————————————"
-echo -e "${COLBG1}       User List        "
+echo -e "${WH}           User List        "
 echo -e "${COLOR1}————————————————————————"
-echo -e "${COLBG1}       User EXP        "
+echo -e "${WH}       User EXP        "
 echo -e "${COLOR1}————————————————————————"
 grep -E "^#&@ " "/usr/local/etc/xray/config/04_inbounds.json" | cut -d ' ' -f 2-3 | column -t | sort | uniq
 echo ""
-echo -e "${COLBG1}Tap enter to go back"
+echo -e "${WH}Tap enter to go back"
 echo -e "${COLOR1}————————————————————————"
 read -rp "Input Username: " user
 if [[ -z $user ]]; then
