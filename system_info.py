@@ -3,6 +3,8 @@ import psutil
 import time
 import json
 from datetime import datetime, timedelta
+from rich.console import Console
+from rich.table import Table, box
 import cpuinfo
 import distro
 import os
@@ -91,81 +93,97 @@ def check_service_status(service_name):
         return f"Error checking status: {e}"
 
 def get_system_info():
-    # Get CPU usage
-    cpu_usage = psutil.cpu_percent(interval=1)  # Get current CPU usage as a percentage
+    cpu_info = cpuinfo.get_cpu_info()
+    cpu_name = cpu_info['brand_raw']
+    cpu_model = platform.processor()
+    cpu_cores = psutil.cpu_count(logical=True)
+    cpu_physical_cores = psutil.cpu_count(logical=False)
+    cpu_freq = psutil.cpu_freq()
+    cpu_speed = cpu_freq.current if cpu_freq else "N/A"
+    cpu_max_speed = cpu_freq.max if cpu_freq and cpu_freq.max != 0 else cpu_speed
 
-    # Get OS and kernel info
     os_name = f"{distro.name()} {distro.version()}"
     kernel_version = platform.release()
 
-    # Get RAM info
-    total_ram = psutil.virtual_memory().total / (1024 ** 3)  # Convert to GB
-    used_ram = psutil.virtual_memory().used / (1024 ** 3)    # Convert to GB
+    total_ram = psutil.virtual_memory().total / (1024 ** 3)
+    used_ram = psutil.virtual_memory().used / (1024 ** 3)
     ram_percentage = psutil.virtual_memory().percent
 
-    ram_usage_str = f"{used_ram:.2f} GB / {total_ram:.2f} GB ({ram_percentage:.1f}%)"
+    ram_usage_str = f"{used_ram:.2f} GB / {total_ram:.2f} GB ({ram_percentage}%)"
 
-    # Get uptime info
     uptime_seconds = time.time() - psutil.boot_time()
     uptime_str = str(timedelta(seconds=uptime_seconds)).split('.')[0]
 
-    # Get disk usage info
+    daily_bandwidth_usage, monthly_bandwidth_usage = get_network_usage()
+
     disk_usage = psutil.disk_usage('/')
     total_disk = disk_usage.total / (1024 ** 3)  # Convert to GB
     used_disk = disk_usage.used / (1024 ** 3)    # Convert to GB
+    # free_disk = disk_usage.free / (1024 ** 3)    # Convert to GB
     disk_percentage = disk_usage.percent
 
-    disk_usage_str = f"{used_disk:.2f} GB / {total_disk:.2f} GB ({disk_percentage:.1f}%)"
+    disk_usage_str = f"{used_disk:.2f} GB / {total_disk:.2f} GB ({disk_percentage}%)"
 
-    # Get service status
     nginx_status = check_service_status('nginx')
     xray_status = check_service_status('xray')
 
-    # Prepare system info data
     system_data = [
+        ("CPU Name", cpu_name),
+        ("CPU Model", cpu_model),
+        ("CPU Physical Cores", cpu_physical_cores),
+        ("CPU Logical Cores", cpu_cores),
+        ("CPU Current Speed (MHz)", f"{cpu_speed:.2f}" if isinstance(cpu_speed, float) else cpu_speed),
+        ("CPU Max Speed (MHz)", f"{cpu_max_speed:.2f}" if isinstance(cpu_max_speed, float) else cpu_max_speed),
         ("Operating System", os_name),
         ("Kernel Version", kernel_version),
         ("RAM Usage", ram_usage_str),
         ("Disk Usage", disk_usage_str),
-        ("CPU Usage", f"{cpu_usage:.2f} %"),
         ("Uptime Server", uptime_str),
         ("Nginx Status", nginx_status),
         ("Xray-core Status", xray_status)
     ]
 
-    return system_data
+    network_data = [
+        ("Daily Bandwidth Usage (GB)", f"{daily_bandwidth_usage:.2f}"),
+        ("Monthly Bandwidth Usage (GB)", f"{monthly_bandwidth_usage:.2f}")
+    ]
 
-def display_combined_info(system_data, ip_info, network_data):
-    # Print System, IP, and Network Usage Information together
-    print("+-------------------------------------------------------+")
-    print("|       <> Script Xray Only <> mod by Sonzai X <>       |")
-    print("+-------------------------------------------------------+")
+    return system_data, network_data
 
-    # Display system information
+def display_system_info(system_data, network_data, ip_info):
+    console = Console()
+
+    max_metric_length = max(len(item[0]) for item in system_data + network_data + list(ip_info.items()))
+    max_value_length = max(len(str(item[1])) for item in system_data + network_data + list(ip_info.items()))
+
+    system_table = Table(title="System Information", box=box.SQUARE, show_header=False, pad_edge=False, min_width=max_metric_length + max_value_length + 10)
+
+    system_table.add_column("Metric", justify="right", style="cyan", no_wrap=True)
+    system_table.add_column("Value", style="magenta")
+
     for item in system_data:
-        print(f"> {item[0]:<25} : {item[1]:<10}")
+        if item[1]:
+            system_table.add_row(item[0], str(item[1]))
+        else:
+            system_table.add_row(item[0], "")
 
-    # Display IP information
+    console.print(system_table)
+
+    ip_table = Table(title="IP and Network Information", box=box.SQUARE, show_header=False, pad_edge=False, min_width=max_metric_length + max_value_length + 10)
+
+    ip_table.add_column("Metric", justify="right", style="cyan", no_wrap=True)
+    ip_table.add_column("Value", style="magenta")
+
     for key, value in ip_info.items():
-        print(f"> {key:<25} : {value:<10}")
+        ip_table.add_row(key, str(value))
+        if key == "City":
+            for network_item in network_data:
+                ip_table.add_row(network_item[0], str(network_item[1]))
 
-    # Display network information
-    for network_item in network_data:
-        print(f"> {network_item[0]:<25} : {network_item[1]:<10}")
-
-    print("+-------------------------------------------------------+")
+    console.print(ip_table)
 
 if __name__ == "__main__":
     update_network_usage()
-    system_data = get_system_info()
+    system_data, network_data = get_system_info()
     ip_info = get_ip_info()
-    daily_bandwidth_usage, monthly_bandwidth_usage = get_network_usage()
-
-    # Prepare network info data with "GB" for usage
-    network_data = [
-        ("Daily Data Usage", f"{daily_bandwidth_usage:.2f} GB"),
-        ("Monthly Data Usage", f"{monthly_bandwidth_usage:.2f} GB")
-    ]
-
-    # Display combined info
-    display_combined_info(system_data, ip_info, network_data)
+    display_system_info(system_data, network_data, ip_info)
