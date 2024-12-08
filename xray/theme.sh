@@ -50,9 +50,11 @@ echo -e ""
 
 }
 
+# Fungsi untuk menangani input menu
 function Select_Menu() {
-read -p "Select From Options [1-17 or 00] :  " Ltt
-case $Ltt in
+read -p "[ root ] 𝗙𝗔𝗡𝗡𝗧𝗨𝗡𝗘𝗟~# "  opt
+    echo -e ""
+    case $opt in
 01 | 1)
 clear
 echo "red" >/etc/rmbl/theme/color.conf
@@ -142,14 +144,12 @@ echo -e "SUCCES Ganti Warna Text"
 clear
 menu
 ;;
-*)
-clear
-m-theme
-;;
-esac
-echo -e ""
-read -n 1 -s -r -p "  Press any key to back on menu"
-menu
+*) echo -e "Invalid input" ; sleep 1 ; Select_Menu ;;
+    esac
+}
 
-Menu_Lambofgod
-Select_Menu
+# Tampilkan menu dan tangani input pengguna
+while true; do
+    Menu_Lambofgod
+    Select_Menu
+done
