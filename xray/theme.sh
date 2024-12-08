@@ -7,52 +7,36 @@ export WH="$(cat /etc/rmbl/warnafont/$colorfont | grep -w "WARNAF" | cut -d: -f2
 ungu="\033[0;35m"
 Xark="\033[0m"
 
-baris_panjang() {
-  echo -e "${COLOR1} ———————————————————————————————————————${Xark}"
-}
-ATAS() {
-  echo -e  " ${WH}               MENU COLOR              ${Xark} "
-}
-
-FIXX() {
-  echo -e  " ${WH}               TEXT COLOR              ${Xark}"
-}
-
-
-Menu_Lambofgod() {
-baris_panjang
-ATAS
-baris_panjang
-echo -e "  ${COLOR1}1.)${NC} ${WH}COLOR RED    "  
-echo -e "  ${COLOR1}2.)${NC} ${WH}COLOR GREEN    " 
-echo -e "  ${COLOR1}3.)${NC} ${WH}COLOR YELLOW " 
-echo -e "  ${COLOR1}4.)${NC} ${WH}COLOR BLUE         " 
-echo -e "  ${COLOR1}5.)${NC} ${WH}COLOR MAGENTA "
-echo -e "  ${COLOR1}6.)${NC} ${WH}COLOR CYAN "
-echo -e "  ${COLOR1}7.)${NC} ${WH}COLOR LIGHT GRAY "
-echo -e "  ${COLOR1}8.)${NC} ${WH}COLOR LIGHT RED "
-echo -e "  ${COLOR1}9.)${NC} ${WH}COLOR LIGHT GREEN "
-echo -e " ${COLOR1}10.)${NC} ${WH}COLOR LIGHT YELLOW "
-echo -e " ${COLOR1}11.)${NC} ${WH}COLOR LIGHT BLUE "
-echo -e " ${COLOR1}12.)${NC} ${WH}COLOR LIGHT MAGENTA "
-echo -e " ${COLOR1}13.)${NC} ${WH}COLOR LIGHT CYAN "
-echo -e " ${COLOR1}14.)${NC} ${WH}COLOR DARKGRAY "
-baris_panjang
-FIXX
-baris_panjang  
-echo -e " ${COLOR1}15.)${NC} ${WH}COLOR TEXT GREEN        "  
-echo -e " ${COLOR1}16.)${NC} ${WH}COLOR TEXT CYAN     "  
-echo -e " ${COLOR1}17.)${NC} ${WH}COLOR TEXT LIGHT        "  
-echo -e " ${COLOR1}00.)${NC} ${WH}EXIT   "
-echo -e ""
-baris_panjang
-echo -e ""
-
+show_theme_menu() {
+    clear
+    echo -e "${COLOR1} ———————————————————————————————————————${Xark}"
+    echo -e  " ${WH}               ---- [ Theme Menu ] ----              ${Xark} "
+    echo -e "${COLOR1} ———————————————————————————————————————${Xark}"
+    echo -e "  ${COLOR1}1.)${NC} ${WH}COLOR RED    "  
+    echo -e "  ${COLOR1}2.)${NC} ${WH}COLOR GREEN    " 
+    echo -e "  ${COLOR1}3.)${NC} ${WH}COLOR YELLOW " 
+    echo -e "  ${COLOR1}4.)${NC} ${WH}COLOR BLUE         " 
+    echo -e "  ${COLOR1}5.)${NC} ${WH}COLOR MAGENTA "
+    echo -e "  ${COLOR1}6.)${NC} ${WH}COLOR CYAN "
+    echo -e "  ${COLOR1}7.)${NC} ${WH}COLOR LIGHT GRAY "
+    echo -e "  ${COLOR1}8.)${NC} ${WH}COLOR LIGHT RED "
+    echo -e "  ${COLOR1}9.)${NC} ${WH}COLOR LIGHT GREEN "
+    echo -e " ${COLOR1}10.)${NC} ${WH}COLOR LIGHT YELLOW "
+    echo -e " ${COLOR1}11.)${NC} ${WH}COLOR LIGHT BLUE "
+    echo -e " ${COLOR1}12.)${NC} ${WH}COLOR LIGHT MAGENTA "
+    echo -e " ${COLOR1}13.)${NC} ${WH}COLOR LIGHT CYAN "
+    echo -e " ${COLOR1}14.)${NC} ${WH}COLOR DARKGRAY "
+    echo -e " ${COLOR1}15.)${NC} ${WH}COLOR TEXT GREEN        "  
+    echo -e " ${COLOR1}16.)${NC} ${WH}COLOR TEXT CYAN     "  
+    echo -e " ${COLOR1}17.)${NC} ${WH}COLOR TEXT LIGHT        "  
+    echo -e " ${COLOR1}00.)${NC} ${WH}EXIT   "
+    echo -e "${COLOR1} ———————————————————————————————————————${Xark}"
+    echo -e ""
 }
 
 # Fungsi untuk menangani input menu
-Select_Menu() {
-read -p "[ root ] 𝗙𝗔𝗡𝗡𝗧𝗨𝗡𝗘𝗟~# "  opt
+handle_theme_menu() {
+    read -p "[ root ] 𝗙𝗔𝗡𝗡𝗧𝗨𝗡𝗘𝗟~# "  opt
     echo -e ""
     case $opt in
 01 | 1)
@@ -144,12 +128,12 @@ echo -e "SUCCES Ganti Warna Text"
 clear
 menu
 ;;
-*) echo -e "Invalid input" ; sleep 1 ; Select_Menu ;;
+        *) echo -e "Invalid input" ; sleep 1 ; show_theme_menu ;;
     esac
 }
 
 # Tampilkan menu dan tangani input pengguna
 while true; do
-    Menu_Lambofgod
-    Select_Menu
+    show_theme_menu
+    handle_theme_menu
 done
