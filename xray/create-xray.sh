@@ -7,11 +7,11 @@ export WH="$(cat /etc/rmbl/warnafont/$colorfont | grep -w "WARNAF" | cut -d: -f2
 ungu="\033[0;35m"
 Xark="\033[0m"
 # . Liner 
-function baris_panjang() {
+baris_panjang() {
   echo -e "\033[5;36m ◇━━━━━━━━━━━━━━━━━◇\033[0m"
 }
 
-function Sc_Credit(){
+Sc_Credit(){
 sleep 1
 baris_panjang
 echo -e "\e[92;1m      Terimakasih Telah Menggunakan \033[0m"
