@@ -56,29 +56,29 @@ clear
 NUMBER_OF_CLIENTS=$(grep -c -E "^#&@ " "/usr/local/etc/xray/config/04_inbounds.json")
 if [[ ${NUMBER_OF_CLIENTS} == '0' ]]; then
 echo -e "${COLOR1}————————————————————————"
-echo -e "${COLBG1}Extend All Xray Account              "
+echo -e "${WH}    Extend All Xray Account              "
 echo -e "${COLOR1}————————————————————————"
-echo -e "${COLBG1}  You have no existing clients!"
+echo -e "${WH}   You have no existing clients!"
 echo -e "${COLOR1}————————————————————————"
 echo ""
 read -n 1 -s -r -p "Press any key to back on menu"
-allxray
+Sc_Credit
 fi
 clear
 echo -e "${COLOR1}————————————————————————"
-echo -e "${COLBG1}Extend All Xray Account              "
+echo -e "${WH}    Extend All Xray Account              "
 echo -e "${COLOR1}————————————————————————"
-echo -e "${COLBG1} User  Expired  "
+echo -e "${WH}      User  Expired  "
 echo -e "${COLOR1}————————————————————————"
 grep -E "^#&@ " "/usr/local/etc/xray/config/04_inbounds.json" | cut -d ' ' -f 2-3 | column -t | sort | uniq
 echo ""
-echo -e "${COLBG1}tap enter to go back"
+echo -e "${WH}tap enter to go back"
 echo -e "${COLOR1}————————————————————————"
-read -rp "${WH}Input Username : " user
+read -rp "Input Username : " user
 if [ -z $user ]; then
-allxray
+Sc_Credit
 else
-read -p "${COLBG1}Expired (days): " masaaktif
+read -p "Expired (days): " masaaktif
 echo ""
 
 Loading_Animasi
@@ -97,10 +97,10 @@ clear
 echo -e "echo ""
 
 echo -e "${COLOR1}————————————————————————"
-echo -e "${COLBG1}All Xray Account Success Extended         "
+echo -e "${WH}    All Xray Account Success Extended         "
 echo -e "${COLOR1}————————————————————————"
-echo -e "${COLBG1} Client Name : ${WH}$user"
-echo -e "${COLBG1} Expired On  : ${WH}$exp4"
+echo -e "${COLOR1} Client Name : ${WH}$user"
+echo -e "${COLOR1} Expired On  : ${WH}$exp4"
 echo -e "${COLOR1}————————————————————————"
 echo ""
 read -n 1 -s -r -p "Press any key to back on menu"
