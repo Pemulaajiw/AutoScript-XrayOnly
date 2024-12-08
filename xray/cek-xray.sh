@@ -56,7 +56,7 @@ clear
 function display_header() {
     clear
     echo -e "${COLOR1}————————————————————————"
-    echo -e "${COLBG1}All Xray User Login Account           "
+    echo -e "${WH}   All Xray User Login Account           "
     echo -e "${COLOR1}————————————————————————"
 }
 
@@ -128,6 +128,7 @@ function main() {
         display_header
         display_users
         display_menu
+        Sc_Credit
         read -p "Pilih opsi [1-2]: " choice
         case $choice in
             1) ;;
