@@ -7,19 +7,19 @@ export WH="$(cat /etc/rmbl/warnafont/$colorfont | grep -w "WARNAF" | cut -d: -f2
 ungu="\033[0;35m"
 Xark="\033[0m"
 
-function baris_panjang() {
+baris_panjang() {
   echo -e "${COLOR1} ———————————————————————————————————————${Xark}"
 }
-function ATAS() {
+ATAS() {
   echo -e  " ${WH}               MENU COLOR              ${Xark} "
 }
 
-function  FIXX() {
+FIXX() {
   echo -e  " ${WH}               TEXT COLOR              ${Xark}"
 }
 
 
-function Menu_Lambofgod() {
+Menu_Lambofgod() {
 baris_panjang
 ATAS
 baris_panjang
@@ -51,7 +51,7 @@ echo -e ""
 }
 
 # Fungsi untuk menangani input menu
-function Select_Menu() {
+Select_Menu() {
 read -p "[ root ] 𝗙𝗔𝗡𝗡𝗧𝗨𝗡𝗘𝗟~# "  opt
     echo -e ""
     case $opt in
