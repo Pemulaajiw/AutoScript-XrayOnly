@@ -8,7 +8,7 @@ export WH="$(cat /etc/rmbl/warnafont/$colorfont | grep -w "WARNAF" | cut -d: -f2
 show_allxray_menu() {
     clear
     echo -e "${COLOR1}————————————————————————————"
-    echo -e "${WH}    ---- [ All Xray Menu ] ----"
+    echo -e "${WH} ---- [ All Xray Menu ] ----"
     echo -e "${COLOR1}————————————————————————————"
     echo -e "${WH}[${COLOR1}1${WH}] Create Xray"
     echo -e "${WH}[${COLOR1}2${WH}] Extend Xray"
@@ -18,7 +18,7 @@ show_allxray_menu() {
     echo -e "${WH}[${COLOR1}6${WH}] BOT Notif"
     echo -e "${WH}[${COLOR1}7${WH}] Warp Setting"
     echo -e "${WH}[${COLOR1}8${WH}] User Traffic"
-    echo -e "${WH}[${COLOR1}9${WH}] Theme(Color)"
+    echo -e "${WH}[${COLOR1}9${WH}] Theme Menu"
     echo -e "${WH}[${COLOR1}0${WH}] Back To Menu"
     echo -e "${COLOR1}————————————————————————————"
     echo -e ""
