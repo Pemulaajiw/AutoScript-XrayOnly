@@ -510,7 +510,6 @@ echo -e "${WH}    Link TCP TLS   : ${WH}$trojanlink6" | tee -a /user/xray-$user.
 echo -e "${COLOR1}————————————————————————" | tee -a /user/xray-$user.log
 echo -e "${COLOR1} " | tee -a /user/xray-$user.log
 echo -e "${COLOR1} " | tee -a /user/xray-$user.log
-Sc_Credit
 
 BOT_TOKEN=$(cat /etc/bot_telegram)
 CHAT_ID=$(cat /etc/user_telegram)
