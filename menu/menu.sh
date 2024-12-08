@@ -8,10 +8,12 @@ export WH="$(cat /etc/rmbl/warnafont/$colorfont | grep -w "WARNAF" | cut -d: -f2
 show_menu() {
     clear
     python /usr/bin/system_info.py
-    printf "${WH}[${COLOR1}1${WH}]${COLOR1} Xray Menu              ${WH}[${COLOR1}4${WH}]${COLOR1} Update Core\n"
-    printf "${WH}[${COLOR1}2${WH}]${COLOR1} Domain Setup           ${WH}[${COLOR1}5${WH}]${COLOR1} Info Script\n"
-    printf "${WH}[${COLOR1}3${WH}]${COLOR1} Speedtest              ${WH}[${COLOR1}6${WH}]${COLOR1} Update Script\n"
-    printf "${COLOR1}+-------------------------------------------------------+"
+    echo -e "${WH}[${COLOR1}1${WH}]${COLOR1} Xray Menu              ${WH}[${COLOR1}4${WH}]${COLOR1} Update Core\n"
+    echo -e "${WH}[${COLOR1}2${WH}]${COLOR1} Domain Setup           ${WH}[${COLOR1}5${WH}]${COLOR1} Info Script\n"
+    echo -e "${WH}[${COLOR1}3${WH}]${COLOR1} Speedtest              ${WH}[${COLOR1}6${WH}]${COLOR1} Update Script\n"
+    echo -e "${COLOR1}${WH} Original Script By Dugong-Lewat"
+    echo -e "${COLOR1}${WH} Mod Menu By Fan-Aja"
+    echo -e "${COLOR1}+-------------------------------------------------------+"
     echo -e ""
 }
 
