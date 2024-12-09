@@ -128,11 +128,10 @@ function main() {
         display_header
         display_users
         display_menu
-        Sc_Credit
         read -p "Pilih opsi [1-2]: " choice
         case $choice in
             1) ;;
-            2) echo -e "Keluar..."; sleep 2 ; clear ; Sc_Credit ;;
+            2) echo -e "Keluar..."; sleep 2 ; clear ; allxray ;;
             *) echo -e "Opsi tidak valid!"; sleep 1 ;;
         esac
     done
