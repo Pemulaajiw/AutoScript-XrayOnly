@@ -29,6 +29,7 @@ handle_menu() {
         4) clear ; update-xray ;;
         5) clear ; about ;;
         6) clear ; update-menu ;;
+        7) clear ; theme.sh ;;
         *) echo -e "Invalid input" ; sleep 1 ; show_menu ;;
     esac
 }
