@@ -7,38 +7,29 @@ export WH="$(cat /etc/rmbl/warnafont/$colorfont | grep -w "WARNAF" | cut -d: -f2
 ungu="\033[0;35m"
 Xark="\033[0m"
 
-show_theme_menu() {
     clear
-    echo -e "${COLOR1} ———————————————————————————————————————${Xark}"
-    echo -e  " ${WH}               ---- [ Theme Menu ] ----              ${Xark} "
-    echo -e "${COLOR1} ———————————————————————————————————————${Xark}"
-    echo -e "  ${COLOR1}1.)${NC} ${WH}COLOR RED    "  
-    echo -e "  ${COLOR1}2.)${NC} ${WH}COLOR GREEN    " 
-    echo -e "  ${COLOR1}3.)${NC} ${WH}COLOR YELLOW " 
-    echo -e "  ${COLOR1}4.)${NC} ${WH}COLOR BLUE         " 
-    echo -e "  ${COLOR1}5.)${NC} ${WH}COLOR MAGENTA "
-    echo -e "  ${COLOR1}6.)${NC} ${WH}COLOR CYAN "
-    echo -e "  ${COLOR1}7.)${NC} ${WH}COLOR LIGHT GRAY "
-    echo -e "  ${COLOR1}8.)${NC} ${WH}COLOR LIGHT RED "
-    echo -e "  ${COLOR1}9.)${NC} ${WH}COLOR LIGHT GREEN "
-    echo -e " ${COLOR1}10.)${NC} ${WH}COLOR LIGHT YELLOW "
-    echo -e " ${COLOR1}11.)${NC} ${WH}COLOR LIGHT BLUE "
-    echo -e " ${COLOR1}12.)${NC} ${WH}COLOR LIGHT MAGENTA "
-    echo -e " ${COLOR1}13.)${NC} ${WH}COLOR LIGHT CYAN "
-    echo -e " ${COLOR1}14.)${NC} ${WH}COLOR DARKGRAY "
-    echo -e " ${COLOR1}15.)${NC} ${WH}COLOR TEXT GREEN        "  
-    echo -e " ${COLOR1}16.)${NC} ${WH}COLOR TEXT CYAN     "  
-    echo -e " ${COLOR1}17.)${NC} ${WH}COLOR TEXT LIGHT        "  
-    echo -e " ${COLOR1}00.)${NC} ${WH}EXIT   "
-    echo -e "${COLOR1} ———————————————————————————————————————${Xark}"
-    echo -e ""
-}
-
-# Fungsi untuk menangani input menu
-handle_theme_menu() {
-    read -p "[ root ] 𝗙𝗔𝗡𝗡𝗧𝗨𝗡𝗘𝗟~# "  opt
-    echo -e ""
-    case $opt in
+echo -e " $COLOR1╔════════════════════════════════════════════════════╗${NC}"
+echo -e " $COLOR1║${NC}${COLBG1}             ${WH}• COLOR PANEL MENU •                  ${NC}$COLOR1║ $NC"
+echo -e " $COLOR1╚════════════════════════════════════════════════════╝${NC}"
+echo -e " $COLOR1╔════════════════════════════════════════════════════╗${NC}"
+echo -e " $COLOR1║$NC ${WH}[${COLOR1}01${WH}]$NC ${COLOR1}• ${WH}COLOR RED         ${WH}[${COLOR1}08${WH}]$NC ${COLOR1}• ${WH}COLOR LIGHT RED$NC$COLOR1    ║$NC"
+echo -e " $COLOR1║$NC ${WH}[${COLOR1}02${WH}]$NC ${COLOR1}• ${WH}COLOR GREEN       ${WH}[${COLOR1}09${WH}]$NC ${COLOR1}• ${WH}COLOR LIGHT GREEN$NC$COLOR1  ║$NC"
+echo -e " $COLOR1║$NC ${WH}[${COLOR1}03${WH}]$NC ${COLOR1}• ${WH}COLOR YELLOW      ${WH}[${COLOR1}10${WH}]$NC ${COLOR1}• ${WH}COLOR LIGHT YELLOW$NC$COLOR1 ║$NC"
+echo -e " $COLOR1║$NC ${WH}[${COLOR1}04${WH}]$NC ${COLOR1}• ${WH}COLOR BLUE        ${WH}[${COLOR1}11${WH}]$NC ${COLOR1}• ${WH}COLOR LIGHT BLUE$NC$COLOR1   ║$NC"
+echo -e " $COLOR1║$NC ${WH}[${COLOR1}05${WH}]$NC ${COLOR1}• ${WH}COLOR MAGENTA     ${WH}[${COLOR1}12${WH}]$NC ${COLOR1}• ${WH}COLOR LIGHT MAGENTA$NC$COLOR1║$NC"
+echo -e " $COLOR1║$NC ${WH}[${COLOR1}06${WH}]$NC ${COLOR1}• ${WH}COLOR CYAN        ${WH}[${COLOR1}13${WH}]$NC ${COLOR1}• ${WH}COLOR LIGHT CYAN$NC$COLOR1   ║$NC"
+echo -e " $COLOR1║$NC ${WH}[${COLOR1}07${WH}]$NC ${COLOR1}• ${WH}COLOR LIGHT GRAY  ${WH}[${COLOR1}14${WH}]$NC ${COLOR1}• ${WH}COLOR DARKGRAY$NC$COLOR1     ║$NC"
+echo -e " $COLOR1╚════════════════════════════════════════════════════╝${NC}"
+echo -e " $COLOR1╔════════════════════════════════════════════════════╗${NC}"
+echo -e " $COLOR1║$NC ${WH}[${COLOR1}15${WH}]$NC ${COLOR1}• ${WH}WARNA TEXT GREEN  ${WH}[${COLOR1}17${WH}]$NC ${COLOR1}• ${WH}WARNA TEXT LIGHT$NC$COLOR1   ║$NC"
+echo -e " $COLOR1║$NC ${WH}[${COLOR1}16${WH}]$NC ${COLOR1}• ${WH}WARNA TEXT CYAN   ${WH}[${COLOR1}00${WH}]$NC ${COLOR1}• ${WH}EXIT          $NC$COLOR1     ║$NC"
+echo -e " $COLOR1╚════════════════════════════════════════════════════╝${NC}"
+echo -e " $COLOR1╔═════════════════════════ ${WH}BY${NC} ${COLOR1}═══════════════════════╗ ${NC}"
+echo -e "  $COLOR1${NC}              ${WH}   • $author •                 $COLOR1 $NC"
+echo -e " $COLOR1╚════════════════════════════════════════════════════╝${NC}"
+echo -e ""
+echo -ne " ${WH}Select menu ${COLOR1}: ${WH}"; read colormenu
+case $colormenu in
 01 | 1)
 clear
 echo "red" >/etc/rmbl/theme/color.conf
@@ -128,12 +119,13 @@ echo -e "SUCCES Ganti Warna Text"
 clear
 menu
 ;;
-        *) echo -e "Invalid input" ; sleep 1 ; show_theme_menu ;;
-    esac
-}
+*)
+clear
+theme
+;;
+esac
+echo -e ""
+read -n 1 -s -r -p "  Press any key to back on menu"
+menu
 
-# Tampilkan menu dan tangani input pengguna
-while true; do
-    show_theme_menu
-    handle_theme_menu
-done
+
