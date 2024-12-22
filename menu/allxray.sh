@@ -14,8 +14,7 @@ show_allxray_menu() {
     echo -e "${WH}[${COLOR1}5${WH}] User List"
     echo -e "${WH}[${COLOR1}6${WH}] BOT Notif"
     echo -e "${WH}[${COLOR1}7${WH}] Warp Setting"
-    echo -e "${WH}[${COLOR1}8${WH}] Theme System"
-    echo -e "${WH}[${COLOR1}9${WH}] User Traffic"
+    echo -e "${WH}[${COLOR1}8${WH}] User Traffic"
     echo -e "${WH}[${COLOR1}0${WH}] Back To Menu"
     echo -e "${COLOR1}————————————————————————————"
     echo -e ""
@@ -33,8 +32,7 @@ handle_allxray_menu() {
         5) clear ; log-xray ;;
         6) clear ; bot-notif ;;
         7) clear ; route-xray ;;
-        8) clear ; theme ;;
-        9) clear ; python /usr/bin/traffic.py ; echo " " ; read -n 1 -s -r -p "Press any key to back on menu" ; show_allxray_menu ;;
+        8) clear ; python /usr/bin/traffic.py ; echo " " ; read -n 1 -s -r -p "Press any key to back on menu" ; show_allxray_menu ;;
         0) clear ; menu ;;
         *) echo -e "Invalid input" ; sleep 1 ; show_allxray_menu ;;
     esac
