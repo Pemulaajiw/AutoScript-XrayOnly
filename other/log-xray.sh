@@ -1,9 +1,6 @@
 #!/bin/bash
-colornow=$(cat /etc/rmbl/theme/color.conf)
-colorfont=$(cat /etc/rmbl/warnafont/warnaf.conf)
-export COLOR1="$(cat /etc/rmbl/theme/$colornow | grep -w "TEXT" | cut -d: -f2|sed 's/ //g')"
-export COLBG1="$(cat /etc/rmbl/theme/$colornow | grep -w "BG" | cut -d: -f2|sed 's/ //g')"
-export WH="$(cat /etc/rmbl/warnafont/$colorfont | grep -w "WARNAF" | cut -d: -f2|sed 's/ //g')"
+COLOR1='\033[0;35m'
+WH='\033[0;39m'
 
 info() {
     echo -e "[ INFO ] $1"
