@@ -1,4 +1,6 @@
 #!/bin/bash
+COLOR1='\033[0;35m'
+WH='\033[0;39m'
 
 info() {
     echo -e "[ INFO ] $1"
