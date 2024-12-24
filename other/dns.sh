@@ -23,8 +23,8 @@ print_error() {
 }
 
 # Set your Cloudflare API credentials
-API_EMAIL="sonzaixmail@gmail.com"
-API_KEY="bf89200f47f014658c65cef74a3d35449ad3c"
+API_EMAIL="mbahkoid13@gmail.com"
+API_KEY="HX3ov-quBQKm9RrqjBA4pj8OjdmswMBeaKouh_m8"
 
 # Set the DNS record details
 TYPE_A="A"
@@ -233,16 +233,16 @@ setup_domain() {
             1)
                 while true; do
                     echo -e "Pilih Domain anda:"
-                    echo -e "1. recycle.us.kg"
-                    echo -e "2. xlab.biz.id"
+                    echo -e "1. fanst-vip.xyz"
+                    echo -e "2. ultrvvip.web.id"
                     echo -e "3. kembali"
                     read -rp $'\e[33;1mMasukkan pilihan Anda: \e[0m' domain_choice
                     case $domain_choice in
                         1)
-                            DOMAIN="recycle.us.kg"
+                            DOMAIN="fanst-vip.xyz"
                             ;;
                         2)
-                            DOMAIN="xlab.biz.id"
+                            DOMAIN="ultrvvip.web.id"
                             ;;
                         3)
                             break
