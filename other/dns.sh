@@ -24,7 +24,7 @@ print_error() {
 
 # Set your Cloudflare API credentials
 API_EMAIL="mbahkoid13@gmail.com"
-API_KEY="HX3ov-quBQKm9RrqjBA4pj8OjdmswMBeaKouh_m8"
+API_KEY="LLTbQVf9Ddw-8a3b4UPT27C-wf_b9ED3iPkG5V29"
 
 # Set the DNS record details
 TYPE_A="A"
