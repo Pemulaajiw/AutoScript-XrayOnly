@@ -16,8 +16,8 @@ sleep 1
 fi
 echo -e "[ INFO ] Starting renew cert... "
 sleep 2
-export CF_Email="sonzaixmail@gmail.com"
-export CF_Key="bf89200f47f014658c65cef74a3d35449ad3c"
+export CF_Email="mbahkoid13@gmail.com"
+export CF_Key="HX3ov-quBQKm9RrqjBA4pj8OjdmswMBeaKouh_m8"
 bash .acme.sh/acme.sh --issue --dns dns_cf -d $domain -d *.$domain --listen-v6 --server letsencrypt --keylength ec-256 --fullchain-file /usr/local/etc/xray/fullchain.cer --key-file /usr/local/etc/xray/private.key --reloadcmd "systemctl restart nginx" --force
 chmod 745 /usr/local/etc/xray/private.key
 echo -e "[ INFO ] Renew cert done... "
